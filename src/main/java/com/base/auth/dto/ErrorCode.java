@@ -48,6 +48,18 @@ public class ErrorCode {
     public static final String ARTICLE_ERROR_NOT_FOUND = "ERROR-ARTICLE-001";
 
     /**
+     * Video error code
+     */
+    public static final String VIDEO_ERROR_UNAUTHORIZED = "ERROR-VIDEO-000";
+    public static final String VIDEO_ERROR_NOT_FOUND = "ERROR-VIDEO-001";
+
+    /**
+     * Course error code
+     */
+    public static final String QUIZ_ERROR_UNAUTHORIZED = "ERROR-QUIZ-000";
+    public static final String QUIZ_ERROR_NOT_FOUND = "ERROR-QUIZ-001";
+
+    /**
      * Starting error code Store
      * */
     public static final String SERVICE_ERROR_UNKNOWN = "ERROR-SERVICE-0000";

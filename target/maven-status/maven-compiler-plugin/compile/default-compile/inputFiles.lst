@@ -1,4 +1,6 @@
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\ApiMessageDto.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\video\VideoDto.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\criteria\QuizCriteria.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Group.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\validation\CategoryKind.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\CustomFeignConfig.java
@@ -11,6 +13,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\ApiResponse.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\GlobalExceptionHandler.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\SecurityConstant.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\controller\QuizController.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\permission\CreatePermissionForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\account\AccountDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\criteria\AccountCriteria.java
@@ -27,6 +30,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\CustomTokenEnhancer.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\mapper\AccountMapper.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\ErrorCode.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\video\CreateVideoForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\UserBaseOTPService.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\account\UpdateAccountAdminForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\category\CreateCategoryForm.java
@@ -34,6 +38,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\AccountRepository.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\article\ArticleAdminDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\ResponseListDto.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Quiz.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\utils\StringUtils.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\controller\ABasicController.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\service\ServicePublicDto.java
@@ -46,10 +51,14 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\EmailService.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\RequestException.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\account\ForgetPasswordForm.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\mapper\QuizMapper.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Video.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\account\LoginDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\ResourceServerConfig.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\VideoRepository.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\utils\ConvertUtils.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\permission\PermissionDto.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\controller\VideoController.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\JsonToUrlEncodedAuthenticationFilter.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\SecurityConfig.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\component\LogInterceptor.java
@@ -61,6 +70,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\BasicErrorController.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\UploadFileDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\ABasicAdminDto.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\quiz\CreateQuizForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\UserBaseApiService.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\UploadFileForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\MethodSecurityConfig.java
@@ -69,6 +79,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\service\ServiceDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\article\ArticleDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\criteria\CategoryCriteria.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\mapper\VideoMapper.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\CustomTokenConverter.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\constant\UserBaseConstant.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\jwt\UserBaseJwt.java
@@ -92,8 +103,10 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\id\IdGenerator.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\SwaggerConfig.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\account\RequestForgetPasswordForm.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\video\UpdateVideoForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\CustomTokenGranter.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\oauth\CustomOauthExceptionSerializer.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\criteria\VideoCriteria.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\AuthorizationServerConfig.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\ArticleRepository.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\UnauthorizationException.java
@@ -102,7 +115,9 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Category.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\mapper\ServiceMapper.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\account\UpdateProfileAdminForm.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\quiz\UpdateQuizForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\AuthenticationFacadeService.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\quiz\QuizDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\account\CreateAccountAdminForm.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\ReuseId.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\ServiceRepository.java
@@ -113,6 +128,7 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\PermissionRepository.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\validation\impl\CategoryKindValidation.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\form\category\UpdateCategoryForm.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\repository\QuizRepository.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\OTPService.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Account.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\model\Service.java
@@ -124,6 +140,8 @@ C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\s
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\exception\CustomizeOverallException.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\category\CategoryDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\utils\ZipUtils.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\video\VideoAdminDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\RestClientConfig.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\service\id\SnowFlakeIdService.java
+C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\dto\quiz\QuizAdminDto.java
 C:\Users\TonPhat\Desktop\springboot-base\springboot-base\source\user-base-auth\src\main\java\com\base\auth\config\WebMvcConfig.java

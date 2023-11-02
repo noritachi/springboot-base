@@ -2,9 +2,12 @@ package com.base.auth.controller;
 
 
 import com.base.auth.constant.UserBaseConstant;
+import com.base.auth.dto.*;
+import com.base.auth.dto.account.AccountAdminDto;
 import com.base.auth.dto.account.AccountDto;
 import com.base.auth.dto.account.ForgetPasswordDto;
 import com.base.auth.dto.account.RequestForgetPasswordForm;
+import com.base.auth.exception.RequestException;
 import com.base.auth.exception.UnauthorizationException;
 import com.base.auth.form.account.CreateAccountAdminForm;
 import com.base.auth.form.account.ForgetPasswordForm;
@@ -19,10 +22,7 @@ import com.base.auth.repository.AccountRepository;
 import com.base.auth.service.UserBaseApiService;
 import com.base.auth.utils.AESUtils;
 import com.base.auth.utils.ConvertUtils;
-import com.base.auth.dto.ResponseListDto;
 import com.base.auth.repository.GroupRepository;
-import com.base.auth.dto.ApiResponse;
-import com.base.auth.dto.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,14 +59,22 @@ public class AccountController extends ABasicController{
 
     @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ACC_L')")
-    public ApiResponse<ResponseListDto<Service>> list(AccountCriteria accountCriteria, Pageable pageable) {
+    public ApiMessageDto<ResponseListObj<AccountAdminDto>> list(AccountCriteria accountCriteria, Pageable pageable) {
         if(!isSuperAdmin() ){
             throw new UnauthorizationException("Not allowed to list career.");
         }
-        ApiResponse<ResponseListDto<Service>> apiMessageDto = new ApiResponse<>();
-        Page<Account> careerList = accountRepository.findAll(accountCriteria.getSpecification() , pageable);
-        ResponseListDto<Service> responseListDto = new ResponseListDto(careerList.getContent(), careerList.getTotalElements(), careerList.getTotalPages());
-        apiMessageDto.setData(responseListDto);
+        ApiMessageDto<ResponseListObj<AccountAdminDto>> apiMessageDto = new ApiMessageDto<>();
+        Page<Account> accountPage = accountRepository.findAll(accountCriteria.getSpecification(),pageable);
+
+        // ResponseListDto<Service> responseListDto = new ResponseListDto(careerList.getContent(), careerList.getTotalElements(), careerList.getTotalPages());
+
+        ResponseListObj<AccountAdminDto> responseListObj = new ResponseListObj<>();
+        responseListObj.setData(accountMapper.fromEntityListToDtoList(accountPage.getContent()));
+        responseListObj.setPage(pageable.getPageNumber());
+        responseListObj.setTotalPage(accountPage.getTotalPages());
+        responseListObj.setTotalElements(accountPage.getTotalElements());
+
+        apiMessageDto.setData(responseListObj);
         apiMessageDto.setMessage("Get career list success");
         return apiMessageDto;
     }
@@ -75,8 +83,8 @@ public class AccountController extends ABasicController{
     @PreAuthorize("hasRole('ACC_C_AD')")
     public ApiResponse<String> createAdmin(@Valid @RequestBody CreateAccountAdminForm createAccountAdminForm, BindingResult bindingResult) {
         ApiResponse<String> apiMessageDto = new ApiResponse<>();
-        Account account = accountRepository.findAccountByUsername(createAccountAdminForm.getUsername());
-        if (account != null) {
+        Account accountUsername = accountRepository.findAccountByUsername(createAccountAdminForm.getUsername());
+        if (accountUsername != null) {
             apiMessageDto.setResult(false);
             apiMessageDto.setCode(ErrorCode.ACCOUNT_ERROR_USERNAME_EXIST);
             return apiMessageDto;
@@ -87,14 +95,12 @@ public class AccountController extends ABasicController{
             apiMessageDto.setCode(ErrorCode.ACCOUNT_ERROR_UNKNOWN);
             return apiMessageDto;
         }
-        account = new Account();
-        account.setUsername(createAccountAdminForm.getUsername());
-        account.setPassword(passwordEncoder.encode(createAccountAdminForm.getPassword()));
-        account.setFullName(createAccountAdminForm.getFullName());
-        account.setKind(UserBaseConstant.USER_KIND_ADMIN);
-        account.setEmail(createAccountAdminForm.getEmail());
+
+        Account account = accountMapper.fromCreateAccountAdminFormToAdmin(createAccountAdminForm);
         account.setGroup(group);
-        account.setStatus(createAccountAdminForm.getStatus());
+        account.setPassword(passwordEncoder.encode(createAccountAdminForm.getPassword()));
+        account.setKind(createAccountAdminForm.getKind());
+
         accountRepository.save(account);
 
         apiMessageDto.setMessage("Create account admin success");
@@ -119,6 +125,7 @@ public class AccountController extends ABasicController{
             apiMessageDto.setCode(ErrorCode.ACCOUNT_ERROR_UNKNOWN);
             return apiMessageDto;
         }
+        accountMapper.mappingFormUpdateAdminToEntity(updateAccountAdminForm, account);
         if (StringUtils.isNoneBlank(updateAccountAdminForm.getPassword())) {
             account.setPassword(passwordEncoder.encode(updateAccountAdminForm.getPassword()));
         }
@@ -130,9 +137,7 @@ public class AccountController extends ABasicController{
             }
             account.setAvatarPath(updateAccountAdminForm.getAvatarPath());
         }
-        account.setGroup(group);
-        account.setStatus(updateAccountAdminForm.getStatus());
-        account.setEmail(updateAccountAdminForm.getEmail());
+
         accountRepository.save(account);
 
         apiMessageDto.setMessage("Update account admin success");
@@ -143,10 +148,16 @@ public class AccountController extends ABasicController{
 
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ACC_V')")
-    public ApiResponse<Account> get(@PathVariable("id") Long id) {
-        Account shopProfile = accountRepository.findById(id).orElse(null);
-        ApiResponse<Account> apiMessageDto = new ApiResponse<>();
-        apiMessageDto.setData(shopProfile);
+    public ApiMessageDto<AccountAdminDto> get(@PathVariable("id") Long id) {
+        if(!isSuperAdmin()){
+            throw new RequestException(ErrorCode.GENERAL_ERROR_UNAUTHORIZED, "Not allowed to get.");
+        }
+        Account account = accountRepository.findById(id).orElse(null);
+        ApiMessageDto<AccountAdminDto> apiMessageDto = new ApiMessageDto<>();
+        if (account == null) {
+            throw new RequestException(ErrorCode.GENERAL_ERROR_NOT_FOUND, "Not found account");
+        }
+        apiMessageDto.setData(accountMapper.fromEntityToAccountAdminDto(account));
         apiMessageDto.setMessage("Get shop profile success");
         return apiMessageDto;
 
@@ -154,16 +165,15 @@ public class AccountController extends ABasicController{
 
     @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ACC_D')")
-    public ApiResponse<String> delete(@PathVariable("id") Long id) {
-        ApiResponse<String> apiMessageDto = new ApiResponse<>();
+    public ApiMessageDto<String> delete(@PathVariable("id") Long id) {
+        if(!isSuperAdmin()){
+            throw new RequestException(ErrorCode.GENERAL_ERROR_UNAUTHORIZED, "Not allow delete");
+        }
+        ApiMessageDto<String> apiMessageDto = new ApiMessageDto<>();
         Account account = accountRepository.findById(id).orElse(null);
         if (account == null) {
-            apiMessageDto.setResult(false);
-            apiMessageDto.setCode(ErrorCode.ACCOUNT_ERROR_NOT_FOUND);
-            return apiMessageDto;
-
+            throw new RequestException(ErrorCode.GENERAL_ERROR_NOT_FOUND, "Account not found");
         }
-        //delete avatar file
         userBaseApiService.deleteFile(account.getAvatarPath());
         accountRepository.deleteById(id);
         apiMessageDto.setMessage("Delete Account success");
@@ -190,7 +200,7 @@ public class AccountController extends ABasicController{
 
         ApiResponse<String> apiMessageDto = new ApiResponse<>();
         long id =getCurrentUser();
-        var account = accountRepository.findById(id).orElse(null);
+        Account account = accountRepository.findById(id).orElse(null);
         if (account == null) {
             apiMessageDto.setResult(false);
             apiMessageDto.setCode(ErrorCode.ACCOUNT_ERROR_NOT_FOUND);
@@ -205,8 +215,7 @@ public class AccountController extends ABasicController{
         if (StringUtils.isNoneBlank(updateProfileAdminForm.getPassword())) {
             account.setPassword(passwordEncoder.encode(updateProfileAdminForm.getPassword()));
         }
-        account.setFullName(updateProfileAdminForm.getFullName());
-        account.setAvatarPath(updateProfileAdminForm.getAvatarPath());
+        accountMapper.mappingFormUpdateProfileToEntity(updateProfileAdminForm, account);
         accountRepository.save(account);
 
         apiMessageDto.setMessage("Update admin account success");

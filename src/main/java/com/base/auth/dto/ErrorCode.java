@@ -10,6 +10,8 @@ public class ErrorCode {
     public static final String GENERAL_ERROR_SHOP_LOCKED = "ERROR-GENERAL-0003";
     public static final String GENERAL_ERROR_STORE_NOT_FOUND = "ERROR-GENERAL-0004";
     public static final String GENERAL_ERROR_ACCOUNT_NOT_FOUND = "ERROR-GENERAL-0005";
+    public static final String GENERAL_ERROR_UNAUTHORIZED = "ERROR-GENERAL-0006";
+    public static final String GENERAL_ERROR_NOT_FOUND = "ERROR-GENERAL-0007";
 
     /**
      * Starting error code Account
@@ -68,6 +70,14 @@ public class ErrorCode {
     public static final String SERVICE_ERROR_USERNAME_EXIST = "ERROR-SERVICE-0003";
     public static final String SERVICE_ERROR_WRONG_OLD_PWD = "ERROR-SERVICE-0004";
     public static final String SERVICE_ERROR_TENANT_ID_EXIST = "ERROR-SERVICE-0005";
+
+    /**
+     * Group error code
+     */
+    public static final String GROUP_ERROR_UNAUTHORIZED = "ERROR-GROUP-000";
+    public static final String GROUP_ERROR_NOT_FOUND = "ERROR-GROUP-001";
+    public static final String GROUP_ERROR_EXIST = "ERROR-GROUP-002";
+    public static final String GROUP_ERROR_CAN_NOT_DELETED = "ERROR-GROUP-003";
 
     /**
      * Starting error code SHOP ACCOUNT

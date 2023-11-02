@@ -1,11 +1,17 @@
 package com.base.auth.controller;
 
 import com.base.auth.dto.ApiMessageDto;
+import com.base.auth.dto.ErrorCode;
+import com.base.auth.dto.ResponseListObj;
+import com.base.auth.dto.group.GroupAdminDto;
+import com.base.auth.exception.RequestException;
 import com.base.auth.exception.UnauthorizationException;
 import com.base.auth.form.group.CreateGroupForm;
 import com.base.auth.form.group.UpdateGroupForm;
+import com.base.auth.mapper.GroupMapper;
 import com.base.auth.model.Group;
 import com.base.auth.model.Permission;
+import com.base.auth.model.criteria.GroupCriteria;
 import com.base.auth.repository.GroupRepository;
 import com.base.auth.repository.PermissionRepository;
 import com.base.auth.dto.ResponseListDto;
@@ -31,10 +37,16 @@ import java.util.Objects;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Slf4j
 public class    GroupController extends ABasicController{
+
+
     @Autowired
     GroupRepository groupRepository;
+
     @Autowired
     PermissionRepository permissionRepository;
+
+    @Autowired
+    GroupMapper groupMapper;
 
     @PostMapping(value = "/create", produces= MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('GR_C')")
@@ -105,30 +117,33 @@ public class    GroupController extends ABasicController{
 
     @GetMapping(value = "/get/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('GR_V')")
-    public ApiMessageDto<Group> get(@PathVariable("id")  Long id) {
+    public ApiMessageDto<GroupAdminDto> get(@PathVariable("id")  Long id) {
         if(!isSuperAdmin()){
             throw new UnauthorizationException("Not allowed to get.");
         }
-        ApiMessageDto<Group> apiMessageDto = new ApiMessageDto<>();
+        ApiMessageDto<GroupAdminDto> apiMessageDto = new ApiMessageDto<>();
         Group group =groupRepository.findById(id).orElse(null);
-        apiMessageDto.setData(group);
+        apiMessageDto.setData(groupMapper.fromEntityToGroupAdminDto(group));
         apiMessageDto.setMessage("Get group success");
         return apiMessageDto;
     }
 
     @GetMapping(value = "/list", produces= MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('GR_L')")
-    public ApiMessageDto<ResponseListDto<Group>> list(@RequestParam(required = true)  int kind, Pageable pageable) {
+    public ApiMessageDto<ResponseListObj<GroupAdminDto>> getList(GroupCriteria groupCriteria){
         if(!isSuperAdmin()){
-            throw new UnauthorizationException("Not allowed list group.");
+            throw new RequestException(ErrorCode.GROUP_ERROR_UNAUTHORIZED);
         }
 
-        ApiMessageDto<ResponseListDto<Group>> apiMessageDto = new ApiMessageDto<>();
-        Page<Group> groups = groupRepository
-                .findAllByKind(kind, PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(new Sort.Order(Sort.Direction.DESC, "createdDate"))));
-        ResponseListDto<Group> responseListDto = new ResponseListDto(groups.getContent() , groups.getTotalElements(), groups.getTotalPages());
-        apiMessageDto.setData(responseListDto);
-        apiMessageDto.setMessage("list group success");
+        ApiMessageDto<ResponseListObj<GroupAdminDto>> apiMessageDto = new ApiMessageDto<>();
+        Page<Group> groupPage = groupRepository.findAll(groupCriteria.getSpecification(),Pageable.unpaged());
+
+        ResponseListObj<GroupAdminDto> responseListObj = new ResponseListObj<>();
+        responseListObj.setData(groupMapper.fromEntityListToAdminDtoList(groupPage.getContent()));
+
+        apiMessageDto.setData(responseListObj);
+        apiMessageDto.setMessage("List group success");
         return apiMessageDto;
     }
+
 }

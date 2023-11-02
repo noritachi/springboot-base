@@ -1,12 +1,11 @@
 package com.base.auth.dto.permission;
 
+import com.base.auth.dto.ABasicAdminDto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class PermissionDto {
-    @ApiModelProperty(name = "id")
-    private Long id;
+public class PermissionAdminDto extends ABasicAdminDto {
     @ApiModelProperty(name = "name")
     private String name;
     @ApiModelProperty(name = "action")
@@ -17,7 +16,5 @@ public class PermissionDto {
     private String description;
     @ApiModelProperty(name = "nameGroup")
     private String nameGroup;
-    @ApiModelProperty(name = "status")
-    private Integer status;
     private String pCode;
 }

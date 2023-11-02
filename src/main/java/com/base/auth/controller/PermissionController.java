@@ -2,6 +2,7 @@ package com.base.auth.controller;
 
 import com.base.auth.dto.ApiMessageDto;
 import com.base.auth.form.permission.CreatePermissionForm;
+import com.base.auth.mapper.PermissionMapper;
 import com.base.auth.model.Permission;
 import com.base.auth.repository.PermissionRepository;
 import com.base.auth.exception.UnauthorizationException;
@@ -27,6 +28,9 @@ public class PermissionController extends ABasicController{
     @Autowired
     PermissionRepository permissionRepository;
 
+    @Autowired
+    PermissionMapper permissionMapper;
+
     @PostMapping(value = "/create", produces= MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('PER_C')")
     public ApiMessageDto<String> create(@Valid @RequestBody CreatePermissionForm createPermissionForm, BindingResult bindingResult) {
@@ -38,6 +42,7 @@ public class PermissionController extends ABasicController{
             apiMessageDto.setMessage("Permission name is exist");
             return apiMessageDto;
         }
+
         permission = new Permission();
         permission.setName(createPermissionForm.getName());
         permission.setAction(createPermissionForm.getAction());
@@ -45,6 +50,7 @@ public class PermissionController extends ABasicController{
         permission.setShowMenu(createPermissionForm.getShowMenu());
         permission.setNameGroup(createPermissionForm.getNameGroup());
         permission.setPCode(createPermissionForm.getPermissionCode());
+
         permissionRepository.save(permission);
         apiMessageDto.setMessage("Create permission success");
         return apiMessageDto;

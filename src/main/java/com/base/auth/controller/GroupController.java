@@ -30,7 +30,7 @@ import java.util.Objects;
 @RequestMapping("/v1/group")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Slf4j
-public class GroupController extends ABasicController{
+public class    GroupController extends ABasicController{
     @Autowired
     GroupRepository groupRepository;
     @Autowired

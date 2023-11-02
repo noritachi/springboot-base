@@ -1,0 +1,98 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="TonPhat (generated)" id="1698905085444-6">
+        <createTable tableName="db_user_base_article">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_user_base_articlePK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INT"/>
+            <column name="avatar" type="VARCHAR(255)"/>
+            <column name="banner" type="VARCHAR(255)"/>
+            <column name="content" type="LONGTEXT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="kind" type="INT"/>
+            <column name="pin_top" type="INT"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-7">
+        <createTable tableName="db_user_base_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="db_user_base_categoryPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="kind" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="ordering" type="INT"/>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-8">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="db_user_base_category" constraintName="FK3s89i6e6994bwtvgn9re1g2v4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_user_base_category" validate="true"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-9">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="db_user_base_article" constraintName="FKw9lh4lnhfidce25g47qeloaq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="db_user_base_category" validate="true"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-10">
+        <dropTable tableName="oauth_access_token"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-11">
+        <dropTable tableName="oauth_approvals"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-12">
+        <dropTable tableName="oauth_client_details"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-13">
+        <dropTable tableName="oauth_client_token"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-14">
+        <dropTable tableName="oauth_code"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-15">
+        <dropTable tableName="oauth_refresh_token"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-1">
+        <dropNotNullConstraint columnDataType="int" columnName="kind" tableName="db_user_base_account"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-2">
+        <dropNotNullConstraint columnDataType="int" columnName="status" tableName="db_user_base_account"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-3">
+        <dropNotNullConstraint columnDataType="int" columnName="status" tableName="db_user_base_group"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-4">
+        <dropNotNullConstraint columnDataType="int" columnName="status" tableName="db_user_base_permission"/>
+    </changeSet>
+    <changeSet author="TonPhat (generated)" id="1698905085444-5">
+        <dropNotNullConstraint columnDataType="int" columnName="status" tableName="db_user_base_service"/>
+    </changeSet>
+</databaseChangeLog>

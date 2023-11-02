@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-11-02T09:55:47+0700",
+    date = "2023-11-02T12:52:13+0700",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.20 (Oracle Corporation)"
 )
 @Component
@@ -78,9 +78,7 @@ public class ServiceMapperImpl implements ServiceMapper {
         service.setServiceName( form.getServiceName() );
         service.setBannerPath( form.getBannerPath() );
         service.setLang( form.getLang() );
-        if ( form.getStatus() != null ) {
-            service.setStatus( form.getStatus() );
-        }
+        service.setStatus( form.getStatus() );
 
         return service;
     }

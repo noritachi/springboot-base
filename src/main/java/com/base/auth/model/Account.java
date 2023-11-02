@@ -23,7 +23,7 @@ public class Account extends Auditable<String> {
     @GenericGenerator(name = "idGenerator", strategy = "com.base.auth.service.id.IdGenerator")
     @GeneratedValue(generator = "idGenerator")
     private Long id;
-    private int kind;
+    private Integer kind;
     private String username;
     private String phone;
     private String email;

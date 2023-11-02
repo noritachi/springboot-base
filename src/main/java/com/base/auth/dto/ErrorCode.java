@@ -35,6 +35,17 @@ public class ErrorCode {
     public static final String CUSTOMER_ERROR_UPDATE = "ERROR-CUSTOMER-0003";
     public static final String CUSTOMER_ERROR_NOT_FOUND = "ERROR-CUSTOMER-0004";
 
+    /**
+     * Category error code
+     */
+    public static final String CATEGORY_ERROR_UNAUTHORIZED = "ERROR-CATEGORY-000";
+    public static final String CATEGORY_ERROR_NOT_FOUND = "ERROR-CATEGORY-001";
+
+    /**
+     * Article error code
+     */
+    public static final String ARTICLE_ERROR_UNAUTHORIZED = "ERROR-ARTICLE-000";
+    public static final String ARTICLE_ERROR_NOT_FOUND = "ERROR-ARTICLE-001";
 
     /**
      * Starting error code Store

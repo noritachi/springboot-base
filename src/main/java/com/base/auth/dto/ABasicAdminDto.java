@@ -18,4 +18,10 @@ public class ABasicAdminDto {
 
     @ApiModelProperty(name = "createdDate")
     private LocalDateTime createdDate;
+
+    @ApiModelProperty(name = "modifiedBy")
+    private String modifiedBy;
+
+    @ApiModelProperty(name = "createdBy")
+    private String createdBy;
 }
